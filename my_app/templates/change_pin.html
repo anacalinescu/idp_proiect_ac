@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html>
+<head>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<style>
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  background-size: cover;
+ 	background-repeat: no-repeat;
+}
+
+.navbar {
+  overflow: hidden;
+  background-color: rgb(51, 51, 51);
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+.navbar a {
+  float: left;
+  font-size: 16px;
+  color: white;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+}
+
+.dropdown {
+  float: left;
+  overflow: hidden;
+}
+
+.dropdown .dropbtn {
+  font-size: 16px;  
+  border: none;
+  outline: none;
+  color: white;
+  padding: 14px 16px;
+  background-color: inherit;
+  font: inherit;
+  margin: 0;
+}
+
+.navbar a:hover, .dropdown:hover .dropbtn {
+  background-color: rgb(96, 214, 214);
+}
+
+.dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: #f9f9f9;
+  width: 100%;
+  left: 0;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  z-index: 1;
+}
+
+.dropdown-content .header {
+  background: rgb(96, 214, 214);
+  padding: 16px;
+  color: white;
+}
+
+.dropdown:hover .dropdown-content {
+  display: block;
+}
+
+/* Create three equal columns that floats next to each other */
+.column {
+  float: left;
+  width: 33.33%;
+  padding: 10px;
+  background-color: #ccc;
+  height: 250px;
+}
+
+.column a {
+  float: none;
+  color: black;
+  padding: 16px;
+  text-decoration: none;
+  display: block;
+  text-align: left;
+}
+
+.column a:hover {
+  background-color: #ddd;
+}
+
+/* Clear floats after the columns */
+.row:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+
+* {box-sizing: border-box}
+
+/* Full-width input fields */
+input[type=text], input[type=password] {
+  width: 100%;
+  padding: 15px;
+  margin: 5px 0 22px 0;
+  display: inline-block;
+  border: none;
+  background: #f1f1f1;
+}
+
+input[type=text]:focus, input[type=password]:focus {
+  background-color: #ddd;
+  outline: none;
+}
+
+hr {
+  border: 1px solid #f1f1f1;
+  margin-bottom: 25px;
+}
+
+/* Set a style for all buttons */
+button {
+  background-color: rgb(96, 214, 214);
+  color: white;
+  padding: 14px 20px;
+  margin: 8px 0;
+  border: none;
+  cursor: pointer;
+  width: 100%;
+  opacity: 0.9;
+}
+
+button:hover {
+  opacity:1;
+}
+
+/* Extra styles for the cancel button */
+.cancelbtn {
+  padding: 14px 20px;
+  background-color: #f44336;
+}
+
+/* Float cancel and signup buttons and add an equal width */
+.cancelbtn, .signupbtn {
+  float: left;
+  width: 50%;
+}
+
+/* Add styles to the form container */
+.container {
+  position: center;
+  margin: 20px;
+  left: 200px;
+  max-width: 500px;
+  padding: 16px;
+  background-color: white;
+}
+
+.bg-img {
+  /* The image used */
+  background-image: url("http://futurestuffs.com/wp-content/uploads/2018/02/nature-background-images-for-photoshop-high-resolution-17.jpg");
+
+  min-height: 380px;
+
+  /* Center and scale the image nicely */
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  position: relative;
+}
+
+/* Clear floats */
+.clearfix::after {
+  content: "";
+  clear: both;
+  display: table;
+}
+
+/* Change styles for cancel button and signup button on extra small screens */
+@media screen and (max-width: 300px) {
+  .cancelbtn, .signupbtn {
+     width: 100%;
+  }
+}
+</style>
+</head>
+<body>
+
+<div class="navbar">
+  <a href="http://localhost:5005/">Home</a>
+  <div class="dropdown">
+    <button class="dropbtn">Login/Register 
+      <i class="fa fa-caret-down"></i>
+    </button>
+    <div class="dropdown-content">
+      <div class="header">
+        <h2>Login/Register</h2>
+      </div>   
+      <div class="row">
+        <div class="column">
+          <a href="http://localhost:5005/login#">Login</a>
+          <a href="http://localhost:5005/register#">Register</a>
+        </div>
+      </div>
+    </div>
+  </div> 
+  <div class="dropdown">
+    <button class="dropbtn">My Account
+      <i class="fa fa-caret-down"></i>
+    </button>
+    <div class="dropdown-content">
+      <div class="header">
+        <h2>My Account</h2>
+      </div>   
+      <div class="row">
+        <div class="column">
+          <h3>Transactions</h3>
+          <a href="http://localhost:5005/transaction_history#">Transaction history</a>
+          <a href="http://localhost:5005/make_transaction#">Make a transaction</a>
+        </div>
+        <div class="column">
+          <h3>Account Info</h3>
+          <a href="http://localhost:5005/create_card#">Create new card</a>
+          <a href="http://localhost:5005/change_pin#">Change pin</a>
+          <a href="http://localhost:5005/show_cards#">Show cards</a>
+        </div>
+      </div>
+    </div>
+  </div> 
+  <a href="http://localhost:5005/logout">Logout</a>
+</div>
+
+<div class="bg-img">
+  <form method="POST" style="border:1px solid #ccc" class="container">
+      <h1>Change pin</h1>
+      <p>Please fill in this form to change pin.</p>
+      <hr>
+
+      <label for="iban"><b>Iban</b></label>
+      <input type="text" placeholder="Enter Iban" name="iban" required>
+
+      <label for="pin"><b>Pin</b></label>
+      <input type="password" placeholder="Enter Pin" name="pin" required>
+
+      <label for="new_pin"><b>New Pin</b></label>
+      <input type="password" placeholder="Enter new Pin" name="new_pin" required>
+
+      <label for="rep_pin"><b>Repeat new Pin</b></label>
+      <input type="password" placeholder="Repeat Pin" name="rep_pin" required>
+    
+      <div class="clearfix">
+        <button type="submit" class="transferbtn">Change</button>
+      </div>
+
+      <div id="correct_pin" style="display: none; overflow: hidden">
+          {{value}}
+      </div>
+
+      <div id="signup" style="display: none; overflow: hidden">
+        {{signup}}
+      </div>
+
+      <div id="correct" style="display: none; overflow: hidden">
+        {{correct}}
+      </div>
+  </form>
+  <script>
+      if (document.getElementById("signup").innerHTML.includes("1")) {
+        alert("Login first!");
+        window.location.href = "http://localhost:5005/login";
+      } else if (document.getElementById("correct").innerHTML.includes("0")) {
+        alert("Iban or pin incorrect!");
+      } else if(document.getElementById("correct_pin").innerHTML.includes("0")) {
+        alert("The pins do not match!");
+      } else if (document.getElementById("correct_pin").innerHTML.includes("1")) {
+        alert("Succes!");
+        window.location.href = "http://localhost:5005/";
+      }
+    </script>
+</div>
+</body>
+</html>

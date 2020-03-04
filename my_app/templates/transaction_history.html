@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html>
+<head>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<style>
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+}
+
+.navbar {
+  overflow: hidden;
+  background-color: rgb(51, 51, 51);
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+.navbar a {
+  float: left;
+  font-size: 16px;
+  color: white;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+}
+
+.dropdown {
+  float: left;
+  overflow: hidden;
+}
+
+.dropdown .dropbtn {
+  font-size: 16px;  
+  border: none;
+  outline: none;
+  color: white;
+  padding: 14px 16px;
+  background-color: inherit;
+  font: inherit;
+  margin: 0;
+}
+
+.navbar a:hover, .dropdown:hover .dropbtn {
+  background-color: rgb(96, 214, 214);
+}
+
+.dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: #f9f9f9;
+  width: 100%;
+  left: 0;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  z-index: 1;
+}
+
+.dropdown-content .header {
+  background: rgb(96, 214, 214);
+  padding: 16px;
+  color: white;
+}
+
+.dropdown:hover .dropdown-content {
+  display: block;
+}
+
+/* Create three equal columns that floats next to each other */
+.column {
+  float: left;
+  width: 33.33%;
+  padding: 10px;
+  background-color: #ccc;
+  height: 250px;
+}
+
+.column a {
+  float: none;
+  color: black;
+  padding: 16px;
+  text-decoration: none;
+  display: block;
+  text-align: left;
+}
+
+.column a:hover {
+  background-color: #ddd;
+}
+
+/* Clear floats after the columns */
+.row:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+
+form {border: 3px solid #f1f1f1;}
+
+input[type=text], input[type=password] {
+  width: 100%;
+  padding: 12px 20px;
+  margin: 8px 0;
+  display: inline-block;
+  border: 1px solid #ccc;
+  box-sizing: border-box;
+}
+
+button {
+  background-color: rgb(25, 196, 196);
+  color: white;
+  padding: 14px 20px;
+  margin: 8px 0;
+  border: none;
+  cursor: pointer;
+  width: 100%;
+}
+
+button:hover {
+  opacity: 0.8;
+}
+
+.cancelbtn {
+  width: auto;
+  padding: 10px 18px;
+  background-color: #f44336;
+}
+
+.imgcontainer {
+  text-align: center;
+  margin: 24px 0 12px 0;
+}
+
+img.avatar {
+  width: 40%;
+  border-radius: 50%;
+}
+
+.bg-img {
+  /* The image used */
+  background-image: url("http://futurestuffs.com/wp-content/uploads/2018/02/nature-background-images-for-photoshop-high-resolution-17.jpg");
+
+  min-height: 380px;
+
+  /* Center and scale the image nicely */
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  position: relative;
+}
+
+/* Add styles to the form container */
+.container {
+  position: absolute;
+  margin: 20px;
+  left: 650px;
+  max-width: 500px;
+  padding: 40px;
+  background-color: white;
+}
+
+table {
+  position:absolute;
+  top: 300px;
+  width: 1500px;
+  left: 170px;
+  border-spacing: 5px;
+  text-align: center;
+  border-color: black;
+  background: white;
+}
+
+span.psw {
+  float: right;
+  padding-top: 16px;
+}
+
+/* Change styles for span and cancel button on extra small screens */
+@media screen and (max-width: 300px) {
+  span.psw {
+     display: block;
+     float: none;
+  }
+  .cancelbtn {
+     width: 100%;
+  }
+}
+</style>
+</head>
+<body>
+
+<div class="navbar">
+  <a href="http://localhost:5005/">Home</a>
+  <div class="dropdown">
+    <button class="dropbtn">Login/Register 
+      <i class="fa fa-caret-down"></i>
+    </button>
+    <div class="dropdown-content">
+      <div class="header">
+        <h2>Login/Register</h2>
+      </div>   
+      <div class="row">
+        <div class="column">
+          <a href="http://localhost:5005/login#">Login</a>
+          <a href="http://localhost:5005/register#">Register</a>
+        </div>
+      </div>
+    </div>
+  </div> 
+  <div class="dropdown">
+    <button class="dropbtn">My Account
+      <i class="fa fa-caret-down"></i>
+    </button>
+    <div class="dropdown-content">
+      <div class="header">
+        <h2>My Account</h2>
+      </div>   
+      <div class="row">
+        <div class="column">
+          <h3>Transactions</h3>
+          <a href="http://localhost:5005/transaction_history#">Transaction history</a>
+          <a href="http://localhost:5005/make_transaction#">Make a transaction</a>
+        </div>
+        <div class="column">
+          <h3>Account Info</h3>
+          <a href="http://localhost:5005/create_card#">Create new card</a>
+          <a href="http://localhost:5005/change_pin#">Change pin</a>
+          <a href="http://localhost:5005/show_cards#">Show cards</a>
+        </div>
+      </div>
+    </div>
+  </div> 
+  <a href="http://localhost:5005/logout">Logout</a>
+</div>
+
+<h2>Login Form</h2>
+
+<div class="bg-img">
+    <form method="POST">
+      <div class="container">
+        <label for="iban"><b>Iban</b></label>
+        <input type="text" placeholder="Enter card Iban" name="iban" required>
+            
+        <button type="submit">View transaction history</button>
+      </div>
+    </form>
+    {{value}}
+    
+    <table class="table">
+      <thead class="thead-dark">
+        <tr>
+        <th scope="col">Date</th>
+        <th scope="col">Source</th>
+        <th scope="col">Destination</th>
+        <th scope="col">Sum</th>
+        <th scope="col">Comm</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for flight in flights %}
+          <tr>
+          <td>{{ flight[4] }}</td>
+          <td>{{ flight[0] }}</td>
+          <td>{{ flight[1] }}</td>
+          <td>{{ flight[3] }}</td>
+          <td>{{ flight[2] }}</td>
+          </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+
+    <div id="signup" style="display: none; overflow: hidden">
+        {{signup}}
+    </div>
+
+    <div id="correct" style="display: none; overflow: hidden">
+      {{correct}}
+    </div>
+
+    </div>
+    <script>
+      if (document.getElementById("signup").innerHTML.includes("1")) {
+        alert("Login first!");
+        window.location.href = "http://localhost:5005/login";
+      } else if (document.getElementById("correct").innerHTML.includes("0")) {
+        alert("Iban incorrect!");
+      }
+    </script>
+</body>
+</html>
