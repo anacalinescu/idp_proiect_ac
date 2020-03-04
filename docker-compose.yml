@@ -1,0 +1,7 @@
+version: "3.1"
+services:
+  app:
+    restart: always
+    image: idpproiectac/proiect:serverfclient
+    ports:
+      - "5005:5005"
