@@ -21,6 +21,12 @@ def logout():
 
 @app.route('/login', methods = ['POST', 'GET'])
 def login():
+    if request.method == "POST":
+        uname = request.form['uname']
+        psw = request.form['psw']
+        payload = {'uname':uname, 'psw':psw}
+        r = requests.post('http://server_b:4001/login', json=payload)
+        return render_template('login.html', value=r.text)
     return render_template('login.html')
 
 @app.route('/register', methods = ['POST', 'GET'])
