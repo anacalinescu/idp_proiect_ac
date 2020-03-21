@@ -18,13 +18,13 @@ config = {
 }
 
 
-server_b = Flask(__name__)
+server = Flask(__name__)
 
-@server_b.route('/', methods = ['POST', 'GET'])
+@server.route('/', methods = ['POST', 'GET'])
 def home():
     return "Home"
 
-@server_b.route('/login', methods = ['POST', 'GET'])
+@server.route('/login', methods = ['POST', 'GET'])
 def login():
     payload = request.get_json(silent=True)
     if not payload:
@@ -40,6 +40,30 @@ def login():
         connection.close()
         return result
 
+@server.route('/register', methods = ['POST', 'GET'])
+def register():
+    payload = request.get_json(silent=True)
+    if not payload:
+        return Response(status=400)
+    else:
+        connection = mysql.connector.connect(**config)
+        if payload['psw'] == payload['psw-repeat']:
+            mycursor = connection.cursor()
+            func = "SELECT correctUsername(%s)"
+            mycursor.execute(func, (payload['username'],))
+            correct = mycursor.fetchone()
+            if correct[0] == 0:
+                mycursor.callproc('insertPersonalData', [payload['username'], payload['last'], payload['first'], payload['address'], payload['number'], payload['email'], ])
+                connection.commit()
+                accountno = randint(10000, 99999)
+                mycursor.callproc('insertUser', [payload['username'], payload['psw'], str(accountno), ])
+                connection.commit()
+            connection.close()
+            val = "1" + str(correct[0])
+            return val
+        connection.close()
+        return "00"
+
 if __name__ == '__main__':
-    server_b.debug = True
-    server_b.run(host='0.0.0.0', port='4001')
+    server.debug = True
+    server.run(host='0.0.0.0', port='4001')

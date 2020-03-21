@@ -25,12 +25,24 @@ def login():
         uname = request.form['uname']
         psw = request.form['psw']
         payload = {'uname':uname, 'psw':psw}
-        r = requests.post('http://server_b:4001/login', json=payload)
+        r = requests.post('http://server:4001/login', json=payload)
         return render_template('login.html', value=r.text)
     return render_template('login.html')
 
 @app.route('/register', methods = ['POST', 'GET'])
 def register():
+    if request.method == "POST":
+        username = request.form['username']
+        last = request.form['last']
+        first = request.form['first']
+        address = request.form['address']
+        number = request.form['number']
+        email = request.form['email']
+        psw = request.form['psw']
+        pswrepeat = request.form['psw-repeat']
+        payload = {'username':username, 'last':last, 'first':first, 'address':address, 'number':number, 'email':email, 'psw':psw, 'psw-repeat':pswrepeat}
+        r = requests.post('http://server:4001/register', json=payload)
+        return render_template('register.html', value=r.text[0], correct = r.text[1])
     return render_template('register.html')
 
 @app.route('/make_transaction', methods = ['POST', 'GET'])
