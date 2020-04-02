@@ -64,24 +64,22 @@ def register():
     if not payload:
         return Response(status=400)
     else:
-        if accountno != 0:
-            connection = mysql.connector.connect(**config)
-            if payload['psw'] == payload['psw-repeat']:
-                mycursor = connection.cursor()
-                func = "SELECT correctUsername(%s)"
-                mycursor.execute(func, (payload['username'],))
-                correct = mycursor.fetchone()
-                if correct[0] == 0:
-                    mycursor.callproc('insertPersonalData', [payload['username'], payload['last'], payload['first'], payload['address'], payload['number'], payload['email'], ])
-                    connection.commit()
-                    accountno = randint(10000, 99999)
-                    mycursor.callproc('insertUser', [payload['username'], payload['psw'], str(accountno), ])
-                    connection.commit()
-                connection.close()
-                val = "1" + str(correct[0])
-                return val
+        connection = mysql.connector.connect(**config)
+        if payload['psw'] == payload['psw-repeat']:
+            mycursor = connection.cursor()
+            func = "SELECT correctUsername(%s)"
+            mycursor.execute(func, (payload['username'],))
+            correct = mycursor.fetchone()
+            if correct[0] == 0:
+                mycursor.callproc('insertPersonalData', [payload['username'], payload['last'], payload['first'], payload['address'], payload['number'], payload['email'], ])
+                connection.commit()
+                accountno = randint(10000, 99999)
+                mycursor.callproc('insertUser', [payload['username'], payload['psw'], str(accountno), ])
+                connection.commit()
             connection.close()
-            return "10"
+            val = "1" + str(correct[0])
+            return val
+        connection.close()
         return "00"
 
 @server.route('/create_card', methods = ['POST', 'GET'])
