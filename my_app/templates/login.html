@@ -253,15 +253,15 @@ span.psw {
 </form>
 <script>
   document.getElementById("cancel").onclick = function () {
-    location.href = url_for("home");
+    location.href = Flask.url_for("home");
   };
   document.getElementById("register").onclick = function () {
-    location.href = url_for("register");
+    location.href = Flask.url_for("register");
   };
   if(document.getElementById("correct_login").innerHTML.includes("0")) {
     alert("Username password incorrect!");
   } else if(document.getElementById("correct_login").innerHTML.includes("1")) {
-    window.location.href = url_for("home");
+    window.location.href = Flask.url_for("home");
   }
 </script>
 </div>

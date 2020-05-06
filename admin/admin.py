@@ -33,7 +33,7 @@ def home():
         mycursor = connection.cursor(buffered=True)
         mycursor.execute(command)
         connection.commit()
-        if mycursor.rowcount != 0:
+        if mycursor.rowcount > 1:
             responses = mycursor.fetchall()
             connection.close()
             response = []
@@ -44,6 +44,7 @@ def home():
                 response.append(resp)
 
             return render_template('admin.html', response = response)
+        connection.close()
     return render_template('admin.html', response = "")
 
 if __name__ == '__main__':

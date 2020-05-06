@@ -283,7 +283,7 @@ button:hover {
     } else if (document.getElementById("correct_username").innerHTML.includes("1")) {
       alert("Username exists!");
     }else if (document.getElementById("correct_register").innerHTML.includes("1")) {
-      window.location.href = url_for("home");
+      window.location.href = Flask.url_for("home" );
     }
   </script>
 </div>
