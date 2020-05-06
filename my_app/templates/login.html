@@ -253,15 +253,15 @@ span.psw {
 </form>
 <script>
   document.getElementById("cancel").onclick = function () {
-    location.href = window.location.protocol + "//" + window.location.host + "/home";
+    location.href = window.location.protocol + "//" + window.location.host + "/";
   };
   document.getElementById("register").onclick = function () {
-    location.href = Flask.url_for("register");
+    location.href = window.location.protocol + "//" + window.location.host + "/register";
   };
   if(document.getElementById("correct_login").innerHTML.includes("0")) {
     alert("Username password incorrect!");
   } else if(document.getElementById("correct_login").innerHTML.includes("1")) {
-    window.location.href = Flask.url_for("home");
+    window.location.href = window.location.protocol + "//" + window.location.host + "/";
   }
 </script>
 </div>

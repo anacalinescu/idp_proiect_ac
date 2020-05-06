@@ -268,14 +268,14 @@ button:hover {
   <script>
       if (document.getElementById("signup").innerHTML.includes("1")) {
         alert("Login firsttt!");
-        window.location.href = Flask.url_for("login");
+        window.location.href = window.location.protocol + "//" + window.location.host + "/login";
       } else if (document.getElementById("correct").innerHTML.includes("0")) {
         alert("Iban or pin incorrect!");
       } else if(document.getElementById("correct_pin").innerHTML.includes("0")) {
         alert("The pins do not match!");
       } else if (document.getElementById("correct_pin").innerHTML.includes("1")) {
         alert("Succes!");
-        window.location.href = Flask.url_for("home");
+        window.location.href = window.location.protocol + "//" + window.location.host + "/";
       }
     </script>
 </div>

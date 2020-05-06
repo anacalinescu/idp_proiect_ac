@@ -30,21 +30,24 @@ def home():
     if request.method == "POST":
         command = request.form['command']
         connection = mysql.connector.connect(**config)
-        mycursor = connection.cursor(buffered=True)
-        mycursor.execute(command)
-        connection.commit()
-        if mycursor.description is not None:
-            responses = mycursor.fetchall()
-            connection.close()
-            response = []
-            for elements in responses:
-                resp = ""
-                for element in elements:
-                    resp = resp + str(element) + space_generator(30 - len(str(element)))
-                response.append(resp)
+        try:
+            mycursor = connection.cursor(buffered=True)
+            mycursor.execute(command)
+            connection.commit()
+            if mycursor.description is not None:
+                responses = mycursor.fetchall()
+                connection.close()
+                response = []
+                for elements in responses:
+                    resp = ""
+                    for element in elements:
+                        resp = resp + str(element) + space_generator(30 - len(str(element)))
+                    response.append(resp)
 
-            return render_template('admin.html', response = response)
-        connection.close()
+                return render_template('admin.html', response = response)
+            connection.close()
+        except (MySQLdb.Error, MySQLdb.Warning) as e:
+            return render_template('admin.html', response = "Invalid command!")
     return render_template('admin.html', response = "")
 
 if __name__ == '__main__':
