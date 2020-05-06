@@ -33,16 +33,17 @@ def home():
         mycursor = connection.cursor(buffered=True)
         mycursor.execute(command)
         connection.commit()
-        responses = mycursor.fetchall()
-        connection.close()
-        response = []
-        for elements in responses:
-            resp = ""
-            for element in elements:
-                resp = resp + str(element) + space_generator(30 - len(str(element)))
-            response.append(resp)
+        if mycursor.rowcount != 0:
+            responses = mycursor.fetchall()
+            connection.close()
+            response = []
+            for elements in responses:
+                resp = ""
+                for element in elements:
+                    resp = resp + str(element) + space_generator(30 - len(str(element)))
+                response.append(resp)
 
-        return render_template('admin.html', response = response)
+            return render_template('admin.html', response = response)
     return render_template('admin.html', response = "")
 
 if __name__ == '__main__':
