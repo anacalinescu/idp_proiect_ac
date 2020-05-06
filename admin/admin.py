@@ -33,7 +33,7 @@ def home():
         mycursor = connection.cursor(buffered=True)
         mycursor.execute(command)
         connection.commit()
-        if mycursor.rowcount > 1:
+        if mycursor.description is not None:
             responses = mycursor.fetchall()
             connection.close()
             response = []
