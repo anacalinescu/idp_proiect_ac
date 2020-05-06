@@ -3,6 +3,7 @@ from flask import Flask
 from flask import request, render_template, jsonify, Response
 from random import randint
 from datetime import date
+from mysql.connector import errorcode
 
 import requests
 import copy
@@ -46,7 +47,7 @@ def home():
 
                 return render_template('admin.html', response = response)
             connection.close()
-        except (MySQLdb.Error, MySQLdb.Warning) as e:
+        except mysql.connector.Error as err:
             return render_template('admin.html', response = "Invalid command!")
     return render_template('admin.html', response = "")
 
