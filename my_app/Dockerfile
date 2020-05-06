@@ -3,7 +3,7 @@ FROM python:3.6
 
 # The EXPOSE instruction indicates the ports on which a container # # will listen for connections
 # Since Flask apps listen to port 5000  by default, we expose it
-EXPOSE 5005
+EXPOSE 4005
 ADD . /my_app
 
 # Sets the working directory for following COPY and CMD instructions

@@ -173,7 +173,7 @@ img {vertical-align: middle; max-height: 700px;}
 <body>
 
 <div class="navbar">
-  <a href="http://localhost:5005/">Home</a>
+  <a href={{ url_for("home") }}>Home</a>
   <div class="dropdown">
     <button class="dropbtn">Login/Register 
       <i class="fa fa-caret-down"></i>
@@ -184,8 +184,8 @@ img {vertical-align: middle; max-height: 700px;}
       </div>   
       <div class="row">
         <div class="column">
-          <a href="http://localhost:5005/login#">Login</a>
-          <a href="http://localhost:5005/register#">Register</a>
+          <a href="{{ url_for("login") }}">Login</a>
+          <a href="{{ url_for("register") }}">Register</a>
         </div>
       </div>
     </div>
@@ -201,19 +201,19 @@ img {vertical-align: middle; max-height: 700px;}
       <div class="row">
         <div class="column">
           <h3>Transactions</h3>
-          <a href="http://localhost:5005/transaction_history#">Transaction history</a>
-          <a href="http://localhost:5005/make_transaction#">Make a transaction</a>
+          <a href={{ url_for("transaction_history") }}>Transaction history</a>
+          <a href={{ url_for("make_transaction") }}>Make a transaction</a>
         </div>
         <div class="column">
           <h3>Account Info</h3>
-          <a href="http://localhost:5005/create_card#">Create new card</a>
-          <a href="http://localhost:5005/change_pin#">Change pin</a>
-          <a href="http://localhost:5005/show_cards#">Show cards</a>
+          <a href={{ url_for("create_card") }}>Create new card</a>
+          <a href={{ url_for("change_pin") }}>Change pin</a>
+          <a href={{ url_for("show_cards") }}>Show cards</a>
         </div>
       </div>
     </div>
   </div>
-  <a href="http://localhost:5005/logout">Logout</a> 
+  <a href={{ url_for("logout") }}>Logout</a> 
 </div>
 
 <div style="padding:16px">
